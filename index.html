@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confeitaria</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="menu-btn" onclick="toggleMenu()">Menu</button>
+    <div class="menu">
+        <ul>
+		    <li><a href="index.html">Página Inicial</a></li>
+			<li><a href="comandas.php">Comandas</a></li>
+			<li><a href="itens1.php">Cadastrar Itens</a></li>
+			<li><a href="cadastrar.php">Cadastrar Funcionários</a></li>
+			<li><a href="caixaadm.php">Caixa</a></li>
+			<li><a href="login.php">Sair</a></li>
+        </ul>
+    </div>
+
+    <div class="logo-container1">
+        <img src="logoteste.png" alt="Logo do site" class="logo">
+    </div>
+
+    </div>
+
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.style.display = menu.style.display === 'none' || menu.style.display === '' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

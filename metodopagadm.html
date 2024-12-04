@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulação de Venda</title>
+<style>
+    /* Estilos para a maquininha */
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #FFF0F8, #FFCBDB);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .maquininha {
+
+        text-align: center;
+    }
+    h1 {
+        font-size: 50px;
+        color: #333;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #9e1fe0;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #FFCBDB;
+    }
+
+    /* Estilos para os links */
+    ul {
+        padding: 0;
+        list-style-type: none;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+    a {
+        display: inline-block;
+        width: 100%;
+        padding: 12px;
+        background-color: #9e1fe0;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    a:hover {
+        background-color: #FFCBDB;
+    }
+</style>
+
+<body>
+    <div class="maquininha">
+        <h1>Realizar Venda</h1>
+        <div id="etapa-2" class="escondido">
+            <ul>
+                <li><a href="cartaocaixaadm.html">Cartão Físico</a></li>
+                <li><a href="cartaodigitadoadm.html">Cartão Digitado</a></li>
+                <li><a href="pixadm.html">Pagamento Via Pix</a></li>
+                <li><a href="dinadm.php">Dinheiro</a></li>
+			    <li><a href="caixaadm.php">RETORNAR AO CAIXA</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+

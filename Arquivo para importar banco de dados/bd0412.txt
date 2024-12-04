@@ -1,0 +1,173 @@
+-- --------------------------------------------------------
+-- Servidor:                     127.0.0.1
+-- Versão do servidor:           10.4.32-MariaDB - mariadb.org binary distribution
+-- OS do Servidor:               Win64
+-- HeidiSQL Versão:              12.8.0.6908
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+-- Copiando estrutura do banco de dados para docesebytes
+CREATE DATABASE IF NOT EXISTS `docesebytes` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `docesebytes`;
+
+-- Copiando estrutura para tabela docesebytes.cliente
+CREATE TABLE IF NOT EXISTS `cliente` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `cpf` varchar(11) DEFAULT NULL,
+  `data_nascimento` date DEFAULT NULL,
+  `endereco` varchar(255) DEFAULT NULL,
+  `telefone` varchar(20) DEFAULT NULL,
+  `whatsapp` varchar(20) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cpf` (`cpf`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Copiando dados para a tabela docesebytes.cliente: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela docesebytes.comandas
+CREATE TABLE IF NOT EXISTS `comandas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` enum('Não começou','Fazendo','Pronto') DEFAULT 'Não começou',
+  `observacoes` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Copiando dados para a tabela docesebytes.comandas: ~2 rows (aproximadamente)
+INSERT INTO `comandas` (`id`, `status`, `observacoes`) VALUES
+	(18, '', '0 Lactose'),
+	(19, '', '0 Lactose');
+
+-- Copiando estrutura para tabela docesebytes.itens
+CREATE TABLE IF NOT EXISTS `itens` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  `preco` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Copiando dados para a tabela docesebytes.itens: ~0 rows (aproximadamente)
+INSERT INTO `itens` (`id`, `nome`, `preco`) VALUES
+	(2, 'alfajor', 20.00);
+
+-- Copiando estrutura para tabela docesebytes.itens_comandas
+CREATE TABLE IF NOT EXISTS `itens_comandas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `comanda_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantidade` int(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  KEY `comanda_id` (`comanda_id`),
+  KEY `item_id` (`item_id`),
+  CONSTRAINT `itens_comandas_ibfk_1` FOREIGN KEY (`comanda_id`) REFERENCES `comandas` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `itens_comandas_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `itens` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Copiando dados para a tabela docesebytes.itens_comandas: ~2 rows (aproximadamente)
+INSERT INTO `itens_comandas` (`id`, `comanda_id`, `item_id`, `quantidade`) VALUES
+	(18, 18, 2, 1),
+	(19, 18, 2, 1),
+	(20, 19, 2, 1);
+
+-- Copiando estrutura para tabela docesebytes.nivel_acesso
+CREATE TABLE IF NOT EXISTS `nivel_acesso` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Copiando dados para a tabela docesebytes.nivel_acesso: ~5 rows (aproximadamente)
+INSERT INTO `nivel_acesso` (`id`, `nome`) VALUES
+	(1, 'Admin'),
+	(4, 'atendente'),
+	(5, 'cozinha'),
+	(6, 'caixa');
+
+-- Copiando estrutura para tabela docesebytes.perfil
+CREATE TABLE IF NOT EXISTS `perfil` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `nivel_acesso_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nome` (`nome`),
+  KEY `perfil_nivel_acesso_fk` (`nivel_acesso_id`),
+  CONSTRAINT `perfil_nivel_acesso_fk` FOREIGN KEY (`nivel_acesso_id`) REFERENCES `nivel_acesso` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Copiando dados para a tabela docesebytes.perfil: ~0 rows (aproximadamente)
+
+
+-- Copiando estrutura para tabela docesebytes.permissao
+CREATE TABLE IF NOT EXISTS `permissao` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Copiando dados para a tabela docesebytes.permissao: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela docesebytes.perfilpermissao
+CREATE TABLE IF NOT EXISTS `perfilpermissao` (
+  `perfil_id` int(11) NOT NULL,
+  `permissao_id` int(11) NOT NULL,
+  PRIMARY KEY (`perfil_id`,`permissao_id`),
+  KEY `permissao_id` (`permissao_id`),
+  CONSTRAINT `perfilpermissao_ibfk_1` FOREIGN KEY (`perfil_id`) REFERENCES `perfil` (`id`),
+  CONSTRAINT `perfilpermissao_ibfk_2` FOREIGN KEY (`permissao_id`) REFERENCES `permissao` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Copiando dados para a tabela docesebytes.perfilpermissao: ~0 rows (aproximadamente)
+
+
+-- Copiando estrutura para tabela docesebytes.usuario
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `perfil_id` int(11) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `status` enum('ativo','inativo','bloqueado') DEFAULT 'ativo',
+  `data_criacao` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  KEY `perfil_id` (`perfil_id`),
+  CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`perfil_id`) REFERENCES `perfil` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Copiando dados para a tabela docesebytes.usuario: ~0 rows (aproximadamente)
+
+-- Copiando estrutura para tabela docesebytes.usuarios
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `nivel_acesso_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`),
+  KEY `fk_nivel_acesso` (`nivel_acesso_id`),
+  CONSTRAINT `fk_nivel_acesso` FOREIGN KEY (`nivel_acesso_id`) REFERENCES `nivel_acesso` (`id`),
+  CONSTRAINT `usuarios_nivel_acesso_fk` FOREIGN KEY (`nivel_acesso_id`) REFERENCES `nivel_acesso` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Copiando dados para a tabela docesebytes.usuarios: ~0 rows (aproximadamente)
+INSERT INTO `usuarios` (`id`, `username`, `password`, `email`, `nivel_acesso_id`) VALUES
+	(6, 'teste1', '$2y$10$JELVyxwgdl5yH07cpsFZDen2fUFs.qApj4jfTLJtYfemcAlE3sV/S', 'teste1@gmail.com', 1);
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

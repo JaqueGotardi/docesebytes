@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento com Chave Pix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+			background: linear-gradient(to right, #FFF0F8, #FFCBDB);
+			display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .maquininha {
+            background-color: #fff;
+            width: 350px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1 {
+            font-size: 20px;
+            color: #333;
+        }
+        .tela {
+            background-color: #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            min-height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #9e1fe0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #FFCBDB;
+        }
+        .escondido {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="maquininha">
+        <h1>Chave Pix</h1>
+        <div class="tela" id="tela">
+            Digite o valor a ser cobrado
+        </div>
+        <div id="etapa-1">
+            <input type="number" id="valor" placeholder="R$ 0,00" step="0.01" required>
+            <button onclick="proximaEtapaPix()">Confirmar Valor</button>
+        </div>
+        <div id="etapa-pix" class="escondido">
+            <p>Chave Pix para pagamento:</p>
+            <p><strong>12345678900</strong></p>
+            <p>Valor: R$ <span id="valorPix"></span></p>
+            <p>Após o pagamento, confirme no sistema.</p>
+            <button onclick="pagamentoConcluido()">Confirmar Pagamento</button>
+        </div>
+        <div id="etapa-sucesso" class="escondido">
+            <p>Pagamento efetuado com sucesso!</p>
+			<a href="caixaadm.php">RETORNAR AO CAIXA</a>
+        </div>
+    </div>
+
+    <script>
+        function proximaEtapaPix() {
+            const valor = document.getElementById("valor").value;
+            if (valor <= 0 || valor === "") {
+                alert("Por favor, insira um valor válido.");
+                return;
+            }
+            document.getElementById("valorPix").textContent = parseFloat(valor).toFixed(2);
+            document.getElementById("tela").textContent = "Aguardando pagamento via Pix...";
+            document.getElementById("etapa-1").classList.add("escondido");
+            document.getElementById("etapa-pix").classList.remove("escondido");
+        }
+
+        function pagamentoConcluido() {
+            document.getElementById("etapa-pix").classList.add("escondido");
+            document.getElementById("tela").textContent = "Pagamento efetuado com sucesso!";
+            document.getElementById("etapa-sucesso").classList.remove("escondido");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+/* Estilos do conteúdo principal */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #FFF0F8, #FFCBDB);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+/* Estilos para o container1 */
+.container1 {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+/* Estilos para o cabeçalho e campos de formulário */
+h2 {
+    color: #333;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Estilo do botão de envio */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #b32aff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #9e1fe0;
+}
+
+/* Estilos para o botão "Cadastre-se" */
+.cadastro-btn {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #b32aff;
+    font-weight: bold;
+}
+
+.cadastro-btn:hover {
+    color: #9e1fe0;
+}
+
+/* Centralizar a logo */
+.logo-container1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px; /* Ajuste o espaçamento da logo em relação à div de acesso */
+}
+
+.logo {
+    width: 350px; /* Ajuste o tamanho da logo para que ela fique um pouco maior que a div de acesso */
+    height: auto;
+}
+/* Estilos do menu */
+.menu {
+    display: none; /* Escondido por padrão */
+    position: absolute;
+    top: 60px; /* Abaixo do botão */
+    left: 10px; /* Alinhado à esquerda */
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    width: 150px; /* Largura ajustada */
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000; /* Garante que o menu fique por cima de outros elementos */
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin: 10px 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px; /* Tamanho menor */
+}
+
+/* Botão do menu */
+.menu-btn {
+    position: absolute;
+    top: 20px; /* Ajustado para o topo */
+    left: 10px; /* Alinhado à esquerda */
+    background-color: #ff77e9;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px; /* Ajustado */
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.menu-btn:hover {
+    background-color: #ffb6c1;
+}
+
+/* Estilos do conteúdo da página */
+.content {
+    text-align: center;
+    margin-top: 0px;
+}
+
+.title {
+    font-size: 40px; /* Tamanho do texto do título */
+    color: white;
+    margin: 0; /* Remove margens padrão */
+    text-align: center;
+    position: relative; /* Ajustado para o posicionamento adequado */
+    top: 40px; /* Distância do topo */
+}
+
+h1 {
+    font-size: 48px;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.description {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #ff77e9;
+}
+
+/* Estilo do quadro de promoções */
+.promo-board {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+/* Estilo dos cards de promoção (estilo post-it) */
+.promo-card {
+    background-color: #fff9b0;
+    border: 2px solid #ffd700;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    width: 150px;
+    height: 180px;
+    text-align: center;
+    transform: rotate(-3deg);
+}
+
+.promo-card h2 {
+    font-size: 18px;
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.price {
+    font-size: 16px;
+    color: #ff4500;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.promo-card:nth-child(even) {
+    transform: rotate(3deg);
+}
+
+       body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .form-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea, select, input {
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 300px;
+        }
+        button {
+            background-color: #9e1fe0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #7c1ac6;
+        }
+        /* Estilo da Tabela Dentro de um Quadrado */
+        .table-container {
+            width: 80%;
+            margin-top: 20px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #9e1fe0;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        /* Organizando os Botões ao Lado */
+        .actions-form {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            flex-direction: row;
+        }
+        .actions-form textarea, .actions-form select {
+            width: 150px;
+        }
+        .form-container button, .actions-form button {
+            margin-right: 10px;
+        }

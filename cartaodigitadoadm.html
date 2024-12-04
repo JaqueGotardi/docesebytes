@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão Digitado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #FFF0F8, #FFCBDB);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1, p {
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+        }
+        label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #9e1fe0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #FFCBDB;
+        }
+        .success-message {
+            display: none;
+            background-color: #e7f9e7;
+            border: 1px solid #4CAF50;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .maquininha a {
+            text-decoration: none;
+            color: #9e1fe0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="form-container">
+        <form onsubmit="return finalizarCompra(event)">
+            <h1>Simulação de Compra</h1>
+            <label for="nome">Nome do Titular:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+            
+            <label for="numero-cartao">Número do Cartão:</label>
+            <input type="text" id="numero-cartao" name="numero-cartao" placeholder="1234 5678 9012 3456" maxlength="19" required>
+            
+            <label for="validade">Data de Validade:</label>
+            <input type="text" id="validade" name="validade" placeholder="MM/AA" maxlength="5" required>
+            
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3" required>
+            
+            <label for="valor">Valor da Compra:</label>
+            <input type="text" id="valor" name="valor" placeholder="R$ 0,00" required>
+            
+            <button type="submit">Finalizar Compra</button>
+        </form>
+    </div>
+
+    <div id="success-message" class="success-message">
+        <h1>Pagamento Efetuado com Sucesso!</h1>
+        <p>Obrigado por sua compra.</p>
+        <a href="caixaadm.php">RETORNAR AO CAIXA</a>
+    </div>
+
+    <script>
+        function finalizarCompra(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+            document.getElementById('form-container').style.display = 'none'; // Esconde o formulário
+            document.getElementById('success-message').style.display = 'block'; // Mostra a mensagem de sucesso
+            return false; // Garante que o formulário não será enviado
+        }
+    </script>
+</body>
+</html>
